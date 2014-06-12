@@ -27,10 +27,10 @@ vi .bash_profile
 	export TMPDIR=$TMP
 
 	export ORACLE_HOSTNAME=oid.fico.com
-	export ORACLE_UNQNAME=DB11G
 	export ORACLE_BASE=/u01/app/oracle
 	export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/dbhome_1
-	export ORACLE_SID=DB11G
+	export ORACLE_UNQNAME=orcl
+	export ORACLE_SID=orcl
 	export PATH=/usr/sbin:$PATH
 	export PATH=$ORACLE_HOME/bin:$PATH
 
@@ -47,3 +47,5 @@ cd database
 ./runInstaller
 
 SYS : superOracle123
+emca -deconfig dbcontrol db -repos drop;
+emca -config dbcontrol db -repos create;
