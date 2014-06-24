@@ -5,7 +5,8 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.box = "base-hd20-centos65"
+    #config.vm.box = "base-hd20-centos65"
+    config.vm.box = "oid"
     config.vm.hostname = "oid.fico.com"
 
     # Forward Oracle ports
@@ -20,6 +21,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.customize ["modifyvm", :id, "--memory", "2048"]
     end
 
-    config.vm.provision "shell", path: "scripts/bootstrap.sh"
+    #config.vm.provision "shell", path: "scripts/bootstrap.sh"
 
 end

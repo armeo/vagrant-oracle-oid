@@ -5,6 +5,9 @@ green='\e[0;32m'
 blue='\e[0;34m'
 NC='\e[0m'
 
+echo -e "${red}set localtime${NC}"
+sudo ln -sf /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
+
 echo -e "${red}set hosts${NC}"
 sudo echo "33.33.33.33    oid.fico.com    oid" >> /etc/hosts
 
@@ -16,7 +19,7 @@ sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 sudo rpm -Uvh http://repo.webtatic.com/yum/el6/latest.rpm
 
 echo -e "${red}Install necessary package for oracle${NC}"
-sudo yum -y install wget vim xterm unzip xorg-x11-apps xorg-x11-xauth xorg-x11-utils xorg-x11-fonts-* java-1.7.0-openjdk-devel.x86_64
+sudo yum -y install wget vim xterm unzip xorg-x11-apps xorg-x11-xauth xorg-x11-utils xorg-x11-fonts-*
 sudo yum -y install binutils compat-libstdc++-33 elfutils-libelf elfutils-libelf-devel glibc glibc-common glibc-devel gcc gcc-c++ libaio libaio-devel libgcc libstdc++ libstdc++-devel make sysstat unixODBC unixODBC-devel ksh
 sudo yum -y update
 
@@ -37,22 +40,3 @@ echo -e "oracle@dm1n\noracle@dm1n" | sudo passwd oracle
 sudo mkdir -p /u01/app/oracle/product/11.2.0/dbhome_1
 sudo chown -R oracle:oinstall /u01
 sudo chmod -R 775 /u01
-
-echo -e "${red}set oracle profile${NC}"
-sudo su - oracle
-cat >> /home/oracle/.bash_profile << EOF
-
-export TMP=/tmp
-export TMPDIR=$TMP
-
-export ORACLE_UNQNAME=orcl
-export ORACLE_SID=orcl
-export ORACLE_HOSTNAME=oid.fico.com
-export ORACLE_BASE=/u01/app/oracle
-export ORACLE_HOME=/u01/app/oracle/product/11.2.0/dbhome_1
-export PATH=/u01/app/oracle/product/11.2.0/dbhome_1/bin:/usr/sbin:$PATH
-
-export LD_LIBRARY_PATH=/u01/app/oracle/product/11.2.0/dbhome_1/lib:/lib:/usr/lib
-export CLASSPATH=/u01/app/oracle/product/11.2.0/dbhome_1/jlib:/u01/app/oracle/product/11.2.0/dbhome_1/rdbms/jlib
-
-EOF
