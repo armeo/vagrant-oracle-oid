@@ -27,6 +27,7 @@ unzip linux.x64_11gR2_database_1of2.zip
 unzip linux.x64_11gR2_database_2of2.zip
 cd database
 ./runInstaller
+Password = superOracle123
 -------------------------------------------------------------------
 emca -deconfig dbcontrol db -repos drop;
 emca -config dbcontrol db -repos create;
